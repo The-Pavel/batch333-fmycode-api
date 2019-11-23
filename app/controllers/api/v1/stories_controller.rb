@@ -1,6 +1,6 @@
 class Api::V1::StoriesController < Api::V1::BaseController
-  skip_before_action :verify_authenticity_token, only: [:create, :update]
-  before_action :set_story, only: [:show, :update]
+  skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
+  before_action :set_story, only: [:show, :update, :destroy]
 
   def index
     @stories = Story.order(created_at: :desc)
@@ -24,6 +24,11 @@ class Api::V1::StoriesController < Api::V1::BaseController
     else
       render_errors
     end
+  end
+
+  def destroy
+    @story.destroy
+    head :no_content
   end
 
   private
