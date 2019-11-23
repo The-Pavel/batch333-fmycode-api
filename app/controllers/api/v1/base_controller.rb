@@ -1,4 +1,3 @@
-# app/controllers/api/v1/base_controller.rb
 class Api::V1::BaseController < ActionController::Base
 
   rescue_from StandardError,                with: :internal_server_error
